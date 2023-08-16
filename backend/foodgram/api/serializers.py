@@ -4,7 +4,13 @@ from rest_framework.fields import SerializerMethodField
 from drf_extra_fields.fields import Base64ImageField
 
 from users.models import User, Subscribe
-from recipe.models import Recipe, Ingredient, ShoppingCartRecipe, Tag, IngredientRecipe, FavoriteRecipe
+from recipe.models import (
+    Recipe,
+    Ingredient,
+    ShoppingCartRecipe,
+    Tag,
+    IngredientRecipe,
+    FavoriteRecipe)
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -267,9 +273,15 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
             IngredientRecipe.objects.filter(
                 recipe=instance).all(), many=True).data
 
-        representation['is_favorite'] = self.get_something(instance, FavoriteRecipe)
+        representation['is_favorite'] = self.get_something(
+            instance,
+            FavoriteRecipe
+        )
 
-        representation['is_in_shopping_cart'] = self.get_something(instance, ShoppingCartRecipe)
+        representation['is_in_shopping_cart'] = self.get_something(
+            instance,
+            ShoppingCartRecipe
+        )
 
         return representation
 

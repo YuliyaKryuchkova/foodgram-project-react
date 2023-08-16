@@ -17,7 +17,9 @@ class Command(BaseCommand):
         ) as file:
             reader = csv.DictReader(file)
             if Tag.objects.first():
-                self.stdout.write(self.style.SUCCESS('Данные списка тегов уже есть'))
+                self.stdout.write(self.style.SUCCESS(
+                    'Данные списка тегов уже есть')
+                )
                 return
             Tag.objects.bulk_create(
                 Tag(**data) for data in reader)

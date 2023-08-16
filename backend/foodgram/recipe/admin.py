@@ -1,6 +1,11 @@
 from django.contrib import admin
 
-from .models import Ingredient, Tag, Recipe, IngredientRecipe, FavoriteRecipe, ShoppingCartRecipe
+from .models import (Ingredient,
+                     Tag,
+                     Recipe,
+                     IngredientRecipe,
+                     FavoriteRecipe,
+                     ShoppingCartRecipe)
 
 
 class IngredientRecipeInline(admin.TabularInline):

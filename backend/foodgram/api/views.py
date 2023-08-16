@@ -21,7 +21,12 @@ from .serializers import (
     SubscribeSerializer, ShoppingCartSerializer)
 from .filters import IngredientFilter, RecipeFilter
 from users.models import Subscribe
-from recipe.models import Recipe, Ingredient, IngredientRecipe, Tag, ShoppingCartRecipe, FavoriteRecipe
+from recipe.models import (Recipe,
+                           Ingredient,
+                           IngredientRecipe,
+                           Tag,
+                           ShoppingCartRecipe,
+                           FavoriteRecipe)
 
 
 User = get_user_model()
