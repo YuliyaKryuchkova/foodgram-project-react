@@ -13,7 +13,7 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   backend:
-    build: ../backend/
+    image: yuliyakryuchkova/foodgram_backend:latest
     env_file: .env
     volumes:
       - ../data/:/app/data/
@@ -22,9 +22,7 @@ services:
 
   frontend:
     env_file: .env
-    build:
-      context: ../frontend
-      dockerfile: Dockerfile
+    image: yuliyakryuchkova/foodgram_frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
     depends_on:
