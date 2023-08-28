@@ -41,7 +41,7 @@ class Recipe(models.Model):
         validators=(
             MinValueValidator(
                 1,
-                message='Время приготовления не менее 1 минуты')
+                message='Время приготовления не менее 1 минуты'),
         )
     )
     pub_date = models.DateTimeField(
