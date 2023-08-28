@@ -5,7 +5,7 @@ from rest_framework.response import Response
 
 from .serializers import ShoppingCartSerializer
 from shoppingcartrecipe.models import ShoppingCartRecipe
-from recipes.models import IngredientRecipe, Recipe
+from recipes.models import Recipe
 
 
 @api_view(['POST', 'DELETE'])
