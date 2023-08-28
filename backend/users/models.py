@@ -16,7 +16,8 @@ class User(AbstractUser):
         unique=True,
         validators=[UnicodeUsernameValidator()],
         error_messages={
-            'unique': "Пользователь с таким именем пользователя уже существует.",
+            'unique': "Пользователь с таким именем "
+                      "пользователя уже существует.",
         },
     )
     first_name = models.CharField(

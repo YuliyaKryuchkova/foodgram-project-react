@@ -38,7 +38,11 @@ class Recipe(models.Model):
     )
     cooking_time = models.PositiveIntegerField(
         'Время приготовления',
-        validators=(MinValueValidator(1, message='Время приготовления не менее 1 минуты'),)
+        validators=(
+            MinValueValidator(
+                1,
+                message='Время приготовления не менее 1 минуты')
+        )
     )
     pub_date = models.DateTimeField(
         'Дата добавления рецепта',
@@ -69,7 +73,7 @@ class IngredientRecipe(models.Model):
         validators=(
             validators.MinValueValidator(
                 1, message='Минимальное количество ингридиентов'),),
-        verbose_name='Количество',)
+        verbose_name='Количество', )
 
     def __str__(self):
         return f'{self.recipe.name} - {self.ingredient.name}'

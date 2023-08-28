@@ -22,7 +22,10 @@ class Command(BaseCommand):
                         'Данные списка ингридиентов уже есть')
                     )
                     return
-                Ingredient.objects.bulk_create(Ingredient(**data) for data in reader)
-            self.stdout.write(self.style.SUCCESS('Данные загружены'))
+                Ingredient.objects.bulk_create(Ingredient(**data)
+                                               for data in reader)
+            self.stdout.write(self.style.SUCCESS(
+                'Данные загружены'))
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f'Произошла ошибка загрузки: {e}'))
+            self.stdout.write(self.style.ERROR(
+                f'Произошла ошибка загрузки: {e}'))

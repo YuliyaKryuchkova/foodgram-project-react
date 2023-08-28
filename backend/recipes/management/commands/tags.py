@@ -22,7 +22,9 @@ class Command(BaseCommand):
                         'Данные списка тегов уже есть')
                     )
                     return
-                Tag.objects.bulk_create(Tag(**data) for data in reader)
+                Tag.objects.bulk_create(
+                    Tag(**data) for data in reader)
             self.stdout.write(self.style.SUCCESS('Данные загружены'))
         except Exception as e:
-            self.stdout.write(self.style.ERROR(f'Произошла ошибка загрузки: {e}'))
+            self.stdout.write(self.style.ERROR(
+                f'Произошла ошибка загрузки: {e}'))
