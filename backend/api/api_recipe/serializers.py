@@ -60,7 +60,7 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
     author = CustomUserSerializer()
     tags = TagSerializer(many=True)
     ingredients = serializers.SerializerMethodField()
-    favorite = serializers.SerializerMethodField()
+    favorites = serializers.SerializerMethodField()
 
     class Meta:
         model = Recipe

@@ -1,7 +1,7 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-# from .api_favorite.views import favorite
+from .api_favorite.views import favorite
 from .api_ingredient.views import IngredientViewSet
 from .api_recipe.views import RecipeViewSet
 from .api_shopcart.views import shopping_cart
