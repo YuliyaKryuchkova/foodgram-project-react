@@ -4,7 +4,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 
 from .serializers import FavoriteSerializer
-# from favoriterecipe.models import FavoriteRecipe
+from favoriterecipe.models import FavoriteRecipe
 from recipes.models import Recipe
 
 
@@ -23,7 +23,7 @@ def favorite(request, pk):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     elif request.method == 'DELETE':
         get_object_or_404(
-            Recipe,
+            FavoriteRecipe,
             user=request.user.id,
             recipe=get_object_or_404(Recipe, id=pk)
         ).delete()
