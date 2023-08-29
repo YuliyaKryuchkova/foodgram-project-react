@@ -9,7 +9,6 @@ from api.api_favorite.serializers import FavoriteSerializer
 from favoriterecipe.models import FavoriteRecipe
 
 
-
 class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Recipe
