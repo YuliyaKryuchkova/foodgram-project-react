@@ -1,7 +1,9 @@
 from rest_framework import serializers
 
-from api.api_recipe.serializers import RecipeSerializer
+# from api.api_recipe.serializers import RecipeSerializer
 from favoriterecipe.models import FavoriteRecipe
+
+from api.api_recipe.serializers import RecipeRetriveListSerializer
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
@@ -18,7 +20,7 @@ class FavoriteSerializer(serializers.ModelSerializer):
         return data
 
     def to_representation(self, instance):
-        return RecipeSerializer(
+        return RecipeRetriveListSerializer(
             instance.recipe,
             context={'request': self.context.get('request')}
         ).data
