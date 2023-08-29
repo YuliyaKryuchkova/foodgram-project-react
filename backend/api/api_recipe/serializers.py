@@ -5,7 +5,7 @@ from api.api_tag.serializers import TagSerializer
 from api.api_users.serializers import CustomUserSerializer
 from ingredient.models import Ingredient
 from recipes.models import IngredientRecipe, Recipe
-from .api_favorite.serializers import FavoriteSerializer
+from api.api_favorite.serializers import FavoriteSerializer
 from favoriterecipe.models import FavoriteRecipe
 
 
