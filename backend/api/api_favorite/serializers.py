@@ -8,7 +8,7 @@ from favoriterecipe.models import FavoriteRecipe
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
-    recipe = RecipeRetriveListSerializer()
+    # recipe = RecipeRetriveListSerializer()
 
     class Meta:
         model = FavoriteRecipe
