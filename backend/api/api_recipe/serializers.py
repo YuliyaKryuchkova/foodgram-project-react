@@ -76,7 +76,7 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
     def get_is_favorited(self, obj):
         if not self.context['request'].user.is_authenticated:
             return False
-        return obj.is_favorited.filter(user=self.context['request'].user)
+        return obj.is_favorited.filter(user=self.context['request'].user).exists()
 
     def get_is_in_shopping_cart(self, obj):
         if not self.context['request'].user.is_authenticated:
@@ -88,6 +88,11 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
             obj.ingredient_recipes,
             many=True
         ).data
+
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        representation['is_favorited'] = self.get_is_favorited(instance)
+        return representation
 
 
 class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
