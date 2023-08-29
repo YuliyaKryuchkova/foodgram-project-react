@@ -16,7 +16,6 @@ from recipes.models import IngredientRecipe, Recipe
 
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
-    serializer_class = RecipeCreateUpdateSerializer
     pagination_class = LimitPageNumberPagination
     permission_classes = [
         IsAuthenticatedOrReadOnly, IsAuthorOrReadOnly
