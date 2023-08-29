@@ -5,6 +5,9 @@ from api.api_tag.serializers import TagSerializer
 from api.api_users.serializers import CustomUserSerializer
 from ingredient.models import Ingredient
 from recipes.models import IngredientRecipe, Recipe
+from api.api_favorite.serializers import FavoriteSerializer
+from favoriterecipe.models import FavoriteRecipe
+
 
 
 class RecipeSerializer(serializers.ModelSerializer):
@@ -59,6 +62,7 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
     author = CustomUserSerializer()
     tags = TagSerializer(many=True)
     ingredients = serializers.SerializerMethodField()
+    favorite = serializers.SerializerMethodField()
 
     class Meta:
         model = Recipe
@@ -67,6 +71,7 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
                   'author',
                   'ingredients',
                   'is_favorited',
+                  'favorite'
                   'name',
                   'image',
                   'text',
@@ -79,6 +84,10 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
         return obj.is_favorited.filter(
             user=self.context['request'].user
         ).exists()
+
+    def get_favorite(self, obj):
+        favorite = FavoriteRecipe.objects.filter(recipe=obj)
+        return FavoriteSerializer(favorite, many=True).data
 
     def get_is_in_shopping_cart(self, obj):
         if not self.context['request'].user.is_authenticated:

@@ -9,8 +9,16 @@ from recipes.models import Recipe
 
 
 @api_view(['POST', 'DELETE'])
-def favorite(request, pk):
-    if request.method == 'POST':
+def favorite(request, pk=None):
+    if request.method == 'GET':
+        favorites = FavoriteRecipe.objects.filter(user=request.user)
+        serializer = FavoriteSerializer(
+            favorites,
+            many=True,
+            context={'request': request}
+        )
+        return Response(serializer.data)
+    elif request.method == 'POST':
         context = {'request': request}
         recipe = get_object_or_404(Recipe, id=pk)
         data = {
