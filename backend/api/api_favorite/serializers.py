@@ -1,6 +1,9 @@
 from rest_framework import serializers
 
-from api.api_recipe.serializers import RecipeSerializer, RecipeRetriveListSerializer
+from api.api_recipe.serializers import (
+    RecipeSerializer,
+    RecipeRetriveListSerializer
+)
 from favoriterecipe.models import FavoriteRecipe
 
 
