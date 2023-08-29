@@ -37,9 +37,9 @@ urlpatterns = [
     path(
         'users/<int:id>/subscribe/',
         subscribe),
-    path(
-        'recipes/<int:pk>/favorite/',
-        favorite),
+    # path(
+    #     'recipes/<int:pk>/favorite/',
+    #     favorite),
     path(
         'recipes/<int:pk>/shopping_cart/',
         shopping_cart),

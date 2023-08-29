@@ -7,7 +7,10 @@ from favoriterecipe.models import FavoriteRecipe
 class FavoriteSerializer(serializers.ModelSerializer):
     class Meta:
         model = FavoriteRecipe
-        fields = ('user', 'recipe',)
+        fields = (
+            'user',
+            'recipe',
+        )
 
     def validate(self, data):
         user = data['user']
