@@ -7,7 +7,7 @@ from ingredient.models import Ingredient
 from recipes.models import IngredientRecipe, Recipe
 from favoriterecipe.models import FavoriteRecipe
 
-from backend.api.api_favorite.serializers import FavoriteSerializer
+from api.api_favorite.serializers import FavoriteSerializer
 
 
 class RecipeSerializer(serializers.ModelSerializer):
