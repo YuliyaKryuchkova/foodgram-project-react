@@ -8,7 +8,7 @@ from favoriterecipe.models import FavoriteRecipe
 from recipes.models import Recipe
 
 
-@api_view(['POST', 'DELETE'])
+@api_view(['GET', 'POST', 'DELETE'])
 def favorite(request, pk=None):
     if request.method == 'GET':
         favorites = FavoriteRecipe.objects.filter(user=request.user)
