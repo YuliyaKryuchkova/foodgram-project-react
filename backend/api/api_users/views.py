@@ -1,4 +1,4 @@
-from django.contrib.auth import get_user_model
+# from django.contrib.auth import get_user_model
 from djoser.views import UserViewSet
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
@@ -6,8 +6,9 @@ from rest_framework.response import Response
 
 from api.api_subscribe.serializers import SubscribeSerializer
 from .pagination import LimitPageNumberPagination
+from subscribe.models import Subscribe
 
-User = get_user_model()
+# User = get_user_model()
 
 
 class CustomDjoserUserViewSet(UserViewSet):
@@ -17,7 +18,7 @@ class CustomDjoserUserViewSet(UserViewSet):
             methods=['GET'],
             permission_classes=[IsAuthenticated])
     def subscriptions(self, request):
-        users = User.objects.filter(followers__user=request.user)
+        users = Subscribe.objects.filter(followers__user=request.user)
         serializer = SubscribeSerializer(self.paginate_queryset(users),
                                          many=True,
                                          context={'request': request})
