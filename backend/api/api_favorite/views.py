@@ -1,6 +1,7 @@
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from .serializers import FavoriteSerializer
@@ -9,15 +10,8 @@ from recipes.models import Recipe
 
 
 @api_view(['POST', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def favorite(request, pk=None):
-    # if request.method == 'GET':
-    #     favorites = FavoriteRecipe.objects.filter(user=request.user)
-    #     serializer = FavoriteSerializer(
-    #         favorites,
-    #         many=True,
-    #         context={'request': request}
-    #     )
-    #     return Response(serializer.data)
     if request.method == 'POST':
         context = {'request': request}
         recipe = get_object_or_404(Recipe, id=pk)

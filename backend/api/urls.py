@@ -5,7 +5,7 @@ from .api_favorite.views import favorite
 from .api_ingredient.views import IngredientViewSet
 from .api_recipe.views import RecipeViewSet
 from .api_shopcart.views import shopping_cart
-from .api_subscribe.views import subscribe
+from .api_subscribe.views import subscribe, subscriptions
 from .api_tag.views import TagViewSet
 from .api_users.views import CustomDjoserUserViewSet
 
@@ -37,6 +37,9 @@ urlpatterns = [
     path(
         'users/<int:id>/subscribe/',
         subscribe),
+    path(
+        'users/subscriptions/',
+        subscriptions),
     path(
         'recipes/<int:pk>/favorite/',
         favorite),

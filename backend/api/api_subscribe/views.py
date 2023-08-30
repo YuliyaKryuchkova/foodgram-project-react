@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
 from subscribe.models import Subscribe
@@ -10,7 +11,18 @@ from .serializers import SubscribeSerializer
 User = get_user_model()
 
 
+@api_view()
+@permission_classes([IsAuthenticated])
+def subscriptions(self, request):
+    users = Subscribe.objects.filter(followers__user=request.user)
+    serializer = SubscribeSerializer(self.paginate_queryset(users),
+                                     many=True,
+                                     context={'request': request})
+    return Response(serializer.data)
+
+
 @api_view(['POST', 'DELETE'])
+@permission_classes([IsAuthenticated])
 def subscribe(request, id):
     if request.method == 'POST':
         context = {'request': request}
