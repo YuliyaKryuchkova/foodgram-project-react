@@ -1,9 +1,9 @@
-from rest_framework import serializers
-from rest_framework.fields import SerializerMethodField
-
-from api.api_recipe.serializers import RecipeSerializer
-from subscribe.models import Subscribe
-from users.models import User
+# from rest_framework import serializers
+# from rest_framework.fields import SerializerMethodField
+#
+# from api.api_recipe.serializers import RecipeSerializer
+# from subscribe.models import Subscribe
+# from users.models import User
 
 
 # class SubscribeListSerializer(serializers.ModelSerializer):
