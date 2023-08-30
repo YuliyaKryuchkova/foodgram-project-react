@@ -14,7 +14,7 @@ class RecipeFilter(FilterSet):
         method='filter_is_favorited'
     )
     is_in_shopping_cart = filters.NumberFilter(
-        method='filter_shoppingcart_validate'
+        method='filter_shoppingcart'
     )
 
     class Meta:
@@ -26,12 +26,12 @@ class RecipeFilter(FilterSet):
             'is_in_shopping_cart',
         )
 
-    def filter_is_favorited_validate(self, queryset, name, value):
+    def filter_is_favorited(self, queryset, name, value):
         if value and self.request.user.is_authenticated:
             return queryset.filter(is_favorited__user=self.request.user)
         return queryset
 
-    def filter_shoppingcart_validate(self, queryset, name, value):
+    def filter_shoppingcart(self, queryset, name, value):
         if value and self.request.user.is_authenticated:
             return queryset.filter(shoppingcart__user=self.request.user)
         return
