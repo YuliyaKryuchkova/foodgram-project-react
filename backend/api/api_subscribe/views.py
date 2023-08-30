@@ -26,7 +26,7 @@ def subscriptions(request):
         context={
             'request': request
         })
-    return Response(serializer.data)
+    return paginator.get_paginated_response(serializer.data)
 
 
 @api_view(['POST', 'DELETE'])
