@@ -57,11 +57,13 @@ class RecipeViewSet(viewsets.ModelViewSet):
         ).annotate(amount=Sum('amount'))
         return self.message_shopping_cart(ingredients)
 
-    @action(detail=False, methods=['GET'])
-    def favorites(self, request):
-        favorites = FavoriteRecipe.objects.filter(user=request.user)
+    @action(detail=False,
+            methods=['GET']
+            )
+    def get_favorite(self, request):
+        favorite = FavoriteRecipe.objects.filter(user=request.user)
         serializer = FavoriteSerializer(
-            favorites,
+            favorite,
             many=True,
             context={'request': request}
         )
