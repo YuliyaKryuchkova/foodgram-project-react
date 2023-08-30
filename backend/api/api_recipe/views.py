@@ -1,14 +1,13 @@
 from django.db.models import Sum
 from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework import viewsets, status
+from rest_framework import viewsets
 from rest_framework.decorators import action
-from rest_framework.generics import get_object_or_404
-from rest_framework.permissions import (IsAuthenticated,
-                                        IsAuthenticatedOrReadOnly)
+# from rest_framework.generics import get_object_or_404
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
 from api.permissions import IsAuthorOrReadOnly
-from rest_framework.response import Response
+# from rest_framework.response import Response
 
 from .filters import RecipeFilter
 from .pagination import LimitPageNumberPagination
@@ -16,7 +15,8 @@ from .serializers import (RecipeCreateUpdateSerializer,
                           RecipeRetriveListSerializer)
 from recipes.models import IngredientRecipe, Recipe
 
-from favoriterecipe.models import FavoriteRecipe
+
+# from favoriterecipe.models import FavoriteRecipe
 
 
 class RecipeViewSet(viewsets.ModelViewSet):
