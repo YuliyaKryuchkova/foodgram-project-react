@@ -4,8 +4,8 @@ from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 
 from subscribe.models import Subscribe
-from api.api_recipe.serializers import RecipeSerializer
 
+from api.api_recipe.serializers import RecipeSerializer
 
 User = get_user_model()
 
