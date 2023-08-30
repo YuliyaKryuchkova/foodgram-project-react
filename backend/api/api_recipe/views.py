@@ -58,7 +58,8 @@ class RecipeViewSet(viewsets.ModelViewSet):
         return self.message_shopping_cart(ingredients)
 
     @action(detail=False,
-            methods=['GET']
+            methods=['GET'],
+            permission_classes=[IsAuthenticated]
             )
     def get_favorite(self, request):
         favorite = FavoriteRecipe.objects.filter(user=request.user)
