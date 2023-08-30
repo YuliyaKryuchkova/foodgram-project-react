@@ -34,9 +34,9 @@ router.register(
     basename='recipes'
 )
 urlpatterns = [
-    path(
-        'users/<int:id>/subscribe/',
-        subscribe),
+    # path(
+    #     'users/<int:id>/subscribe/',
+    #     subscribe),
     # path(
     #     'recipes/<int:pk>/favorite/',
     #     favorite),
