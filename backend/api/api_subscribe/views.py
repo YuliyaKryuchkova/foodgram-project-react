@@ -7,15 +7,17 @@ from rest_framework.response import Response
 
 from subscribe.models import Subscribe
 from .serializers import SubscribeSerializer
+from api.api_users.pagination import LimitPageNumberPagination
 
 User = get_user_model()
 
 
 @api_view()
 @permission_classes([IsAuthenticated])
-def subscriptions(self, request):
+def subscriptions(request):
+    paginator = LimitPageNumberPagination()
     users = Subscribe.objects.filter(followers__user=request.user)
-    serializer = SubscribeSerializer(self.paginate_queryset(users),
+    serializer = SubscribeSerializer(paginator.paginate_queryset(users),
                                      many=True,
                                      context={'request': request})
     return Response(serializer.data)
