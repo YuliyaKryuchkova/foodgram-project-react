@@ -3,7 +3,7 @@ from .mixins import CreateListRetrieveViewSet
 from .serializers import TagSerializer
 
 
-class TagViewSet(CreateListRetrieveViewSet):  # id 1 нет
+class TagViewSet(CreateListRetrieveViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     permission_classes = []

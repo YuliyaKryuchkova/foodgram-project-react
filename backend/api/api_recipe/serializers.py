@@ -6,8 +6,6 @@ from api.api_users.serializers import CustomUserSerializer
 from ingredient.models import Ingredient
 from recipes.models import IngredientRecipe, Recipe
 
-# from favoriterecipe.models import FavoriteRecipe
-
 
 class RecipeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -81,10 +79,6 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
         return obj.is_favorited.filter(
             user=self.context['request'].user
         ).exists()
-
-    # def get_favorite(self, obj):
-    #     favorite = FavoriteRecipe.objects.filter(recipe=obj)
-    #     return FavoriteSerializer(favorite, many=True).data
 
     def get_is_in_shopping_cart(self, obj):
         if not self.context['request'].user.is_authenticated:
@@ -175,27 +169,3 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
                 'Ингридиент уже в списке'
             )
         return values
-
-
-# class FavoriteSerializer(serializers.ModelSerializer):
-#
-#     class Meta:
-#         model = FavoriteRecipe
-#         fields = (
-#             'user',
-#             'recipe',
-#         )
-#
-#     def validate(self, data):
-#         user = data['user']
-#         if user.is_favorited.filter(recipe=data['recipe']).exists():
-#             raise serializers.ValidationError(
-#                 'Рецепт в избранном.'
-#             )
-#         return data
-#
-#     def to_representation(self, instance):
-#         return RecipeSerializer(
-#             instance.recipe,
-#             context={'request': self.context.get('request')}
-#         ).data

@@ -4,7 +4,6 @@ from rest_framework.fields import SerializerMethodField
 
 from api.api_recipe.serializers import RecipeSerializer
 from subscribe.models import Subscribe
-# from users.models import User
 
 
 User = get_user_model()

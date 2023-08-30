@@ -69,26 +69,26 @@ https://www.docker.com/products/docker-desktop/
 https://docs.docker.com/engine/install/ubuntu/#install-using-the-convenience-script
 Для этого поочерёдно выполните в терминале следующие команды:
 
-sudo apt update
-
-sudo apt install curl
- 
+`sudo apt update
+`
+`sudo apt install curl
+` 
 2) С помощью утилиты curl скачайте скрипт для установки докера с официального сайта.
 
-curl -fSL https://get.docker.com -o get-docker.sh
-
+`curl -fSL https://get.docker.com -o get-docker.sh
+`
 3) Запустите сохранённый скрипт с правами суперпользователя:
 
-sudo sh ./get-docker.sh
-
+`sudo sh ./get-docker.sh
+`
 * Дополнительно к Docker установите утилиту Docker Compose:
  
-sudo apt-get install docker-compose-plugin
-
+`sudo apt-get install docker-compose-plugin
+`
 * Проверьте, что Docker работает:
 
-sudo systemctl status docker
-
+`sudo systemctl status docker
+`
 * Установка Docker на macOS
 Зайдите на официальный сайт проекта https://www.docker.com/products/docker-desktop/ и скачайте установочный файл Docker Desktop для вашей платформы — Apple Chip для процессоров M1/M2 и Intel Chip для процессоров Intel.
 Откройте скачанный DMG-файл и перетащите Docker в Applications, а потом — запустите программу Docker.
@@ -104,20 +104,20 @@ https://github.com/YuliyaKryuchkova/foodgram-project-react
 
 ### Установка docker compose на сервер:
 
-sudo apt update
+`sudo apt update`
 
-sudo apt install curl
+`sudo apt install curl`
 
-curl -fSL https://get.docker.com -o get-docker.sh
+`curl -fSL https://get.docker.com -o get-docker.sh`
 
-sudo sh ./get-docker.sh
+`sudo sh ./get-docker.sh`
 
 sudo apt-get install docker-compose-plugin
 
 * В директорию kittygram/ скопируйте файлы docker-compose.production.yml и .env:
 
-scp -i path_to_SSH/SSH_name docker-compose.production.yml username@server_ip
-
+`scp -i path_to_SSH/SSH_name docker-compose.production.yml username@server_ip
+`
 1) path_to_SSH — путь к файлу с SSH-ключом;
 
 2) SSH_name — имя файла с SSH-ключом (без расширения);
@@ -160,19 +160,21 @@ TELEGRAM_TOKEN                 # токен бота (получить токе�
 
 * Коммитим и пушим изменения на GitHub.
 
- git add .
+` git add .`
 
- git commit -m 'твой коммит'
+` git commit -m 'твой коммит'`
 
- git push
+` git push`
 
 * Сайт:
 
 https://foodgramtasty.myftp.org
 
-Username: admin
-Email: admin@admin.ru
-Password: admin
+Username: `admin`
+
+Email: `admin@admin.com`
+
+Password: `admin`
 
 ### Автор:
 
