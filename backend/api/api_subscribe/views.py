@@ -16,8 +16,8 @@ User = get_user_model()
 @permission_classes([IsAuthenticated])
 def subscriptions(request):
     paginator = LimitPageNumberPagination()
-    users = Subscribe.objects.filter(followers__user=request.user)
-    serializer = SubscribeSerializer(paginator.paginate_queryset(users),
+    users = User.objects.filter(followers__user=request.user)
+    serializer = SubscribeSerializer(paginator.paginate_queryset(users, request),
                                      many=True,
                                      context={'request': request})
     return Response(serializer.data)
