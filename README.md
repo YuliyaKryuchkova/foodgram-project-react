@@ -114,7 +114,7 @@ https://github.com/YuliyaKryuchkova/foodgram-project-react
 
 sudo apt-get install docker-compose-plugin
 
-* В директорию kittygram/ скопируйте файлы docker-compose.production.yml и .env:
+* В директорию infra/ скопируйте файлы docker-compose.production.yml и .env:
 
 `scp -i path_to_SSH/SSH_name docker-compose.production.yml username@server_ip
 `
@@ -132,11 +132,15 @@ sudo docker compose -f docker-compose.production.yml up -d
 
 * Выполните миграции, соберите статические файлы бэкенда и скопируйте их в /backend_static/static/ Пошагово выполните команды:
 
-sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
+            sudo docker compose -f docker-compose.production.yml down
 
-sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
+            sudo docker image rm yuliyakryuchkova/foodgram_backend
 
-sudo docker compose -f docker-compose.production.yml exec backend cp -r /app/collected_static/. /backend_static/static/
+            sudo docker compose -f docker-compose.production.yml up -d
+
+            sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
+
+            sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic --noinput
 
 Файл workflow уже написан. Он находится в директории foodgram-project-react/.github/workflows/main.yml
 
