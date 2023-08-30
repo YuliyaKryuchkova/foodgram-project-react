@@ -60,7 +60,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['GET'])
     def favorites(self, request):
         favorites = FavoriteRecipe.objects.filter(user=request.user)
-        serializer = FavoriteSerializer(favorites, many=True, context={'request': request})
+        serializer = FavoriteSerializer(
+            favorites,
+            many=True,
+            context={'request': request}
+        )
         return Response(serializer.data)
 
     @action(detail=True,
