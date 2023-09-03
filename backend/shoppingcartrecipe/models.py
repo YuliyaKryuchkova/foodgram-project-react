@@ -11,19 +11,25 @@ class ShoppingCartRecipe(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='shoppingcart',
-        verbose_name='Юзер')
+        verbose_name='Юзер'
+    )
     recipe = models.ForeignKey(
         Recipe,
         on_delete=models.CASCADE,
-        related_name='shoppingcart')
+        related_name='shoppingcart'
+    )
 
     class Meta:
         verbose_name = 'Список покупок'
         verbose_name_plural = 'Список покупок'
         constraints = [
             models.UniqueConstraint(
-                fields=('user', 'recipe'),
-                name='unique_shoppingcart')
+                fields=(
+                    'user',
+                    'recipe'
+                ),
+                name='unique_shoppingcart'
+            )
         ]
 
     def __str__(self):

@@ -1,7 +1,11 @@
+from django.contrib.auth import get_user_model
+
 from django.db import models
 from django.db.models import F, Q
 
-from users.models import User
+# from users.models import User
+
+User = get_user_model()
 
 
 class Subscribe(models.Model):
@@ -17,16 +21,25 @@ class Subscribe(models.Model):
     )
 
     class Meta:
-        ordering = ('-id',)
+        ordering = (
+            '-id',
+        )
         verbose_name = 'Подписка'
         verbose_name_plural = 'Подписки'
         constraints = [
             models.UniqueConstraint(
-                fields=['user', 'author'],
+                fields=[
+                    'user',
+                    'author'
+                ],
                 name='unique_subscribe'
             ),
             models.CheckConstraint(
-                check=~Q(user=F('author')),
+                check=~Q(
+                    user=F(
+                        'author'
+                    )
+                ),
                 name='Подписка на себя'
             )
         ]
