@@ -5,7 +5,6 @@ from favoriterecipe.models import FavoriteRecipe
 
 
 class FavoriteSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = FavoriteRecipe
         fields = (

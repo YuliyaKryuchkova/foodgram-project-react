@@ -62,16 +62,17 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ('id',
-                  'tags',
-                  'author',
-                  'ingredients',
-                  'is_favorited',
-                  'name',
-                  'image',
-                  'text',
-                  'cooking_time',
-                  )
+        fields = (
+            'id',
+            'tags',
+            'author',
+            'ingredients',
+            'is_favorited',
+            'name',
+            'image',
+            'text',
+            'cooking_time',
+        )
 
     def get_is_favorited(self, obj):
         if not self.context['request'].user.is_authenticated:
@@ -115,7 +116,7 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
             'cooking_time'
         )
 
-    def get_something(self, obj, model):
+    def _get_something(self, obj, model):
         if not self.context['request'].user.is_authenticated:
             return False
         return model.objects.filter(

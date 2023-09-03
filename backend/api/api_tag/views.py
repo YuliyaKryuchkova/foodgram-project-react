@@ -1,9 +1,9 @@
 from tag.models import Tag
-from .mixins import CreateListRetrieveViewSet
+from .mixins import ListRetrieveViewSet
 from .serializers import TagSerializer
 
 
-class TagViewSet(CreateListRetrieveViewSet):
+class TagViewSet(ListRetrieveViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     permission_classes = []
