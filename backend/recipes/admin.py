@@ -28,12 +28,17 @@ class RecipeAdmin(admin.ModelAdmin):
         'pub_date',
     )
     inlines = [IngredientRecipeInline]
-    filter_horizontal = ['tags']
+    filter_horizontal = (
+        'tags',
+    )
 
     ordering = (
         'pub_date',
     )
     empty_value_display = '-пусто-'
 
+    @admin.display(
+        description='Колличество добавлений в избранное'
+    )
     def get_favorite_count(self, obj):
         return obj.is_favorited.count()

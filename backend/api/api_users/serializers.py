@@ -19,7 +19,6 @@ class CustomUserCreateSerializer(UserCreateSerializer):
             'last_name',
             'password'
         )
-        # extra_kwargs = {'password': {'write_only': True}}
 
     def validate_username(self, value):
         if value.lower() == 'me':
