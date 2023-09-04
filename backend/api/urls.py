@@ -1,13 +1,13 @@
 from django.urls import include, path
 from rest_framework.routers import DefaultRouter
 
-from .api_favorite.views import favorite
-from .api_ingredient.views import IngredientViewSet
-from .api_recipe.views import RecipeViewSet
-from .api_shopcart.views import shopping_cart
-from .api_subscribe.views import subscribe, subscriptions
-from .api_tag.views import TagViewSet
-from .api_users.views import CustomDjoserUserViewSet
+from .favorite.views import favorite
+from .ingredient.views import IngredientViewSet
+from .recipe.views import RecipeViewSet
+from .shopcart.views import shopping_cart
+from .subscribe.views import subscribe, subscriptions
+from .tag.views import TagViewSet
+from .users.views import CustomDjoserUserViewSet
 
 app_name = 'api'
 

@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 from subscribe.models import Subscribe
 from .serializers import SubscribeListSerializer, SubscribeSerializer
-from api.api_users.pagination import LimitPageNumberPagination
+from api.users.pagination import LimitPageNumberPagination
 
 User = get_user_model()
 

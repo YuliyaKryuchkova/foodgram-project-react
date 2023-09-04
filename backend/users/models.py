@@ -1,5 +1,4 @@
 from django.contrib.auth.models import AbstractUser
-# from django.contrib.auth.validators import UnicodeUsernameValidator
 from django.db import models
 from rest_framework.exceptions import ValidationError
 
@@ -10,16 +9,6 @@ class User(AbstractUser):
         max_length=200,
         unique=True,
     )
-    # username = models.CharField(
-    #     verbose_name='username',
-    #     max_length=150,
-    #     unique=True,
-    #     validators=[UnicodeUsernameValidator()],
-    #     error_messages={
-    #         'unique': "Пользователь с таким именем "
-    #                   "пользователя уже существует.",
-    #     },
-    # )
     first_name = models.CharField(
         'Имя',
         max_length=150

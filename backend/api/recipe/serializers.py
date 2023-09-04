@@ -1,8 +1,8 @@
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
-from api.api_tag.serializers import TagSerializer
-from api.api_users.serializers import CustomUserSerializer
+from api.tag.serializers import TagSerializer
+from api.users.serializers import CustomUserSerializer
 from ingredient.models import Ingredient
 from recipes.models import IngredientRecipe, Recipe
 

@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 
-from api.api_recipe.serializers import RecipeSerializer
+from api.recipe.serializers import RecipeSerializer
 from subscribe.models import Subscribe
 
 
