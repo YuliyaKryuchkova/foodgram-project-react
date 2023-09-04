@@ -74,12 +74,16 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
             'cooking_time',
         )
 
+    # def get_is_favorited(self, obj):
+    #     if not self.context['request'].user.is_authenticated:
+    #         return False
+    #     return obj.is_favorited.filter(
+    #         user=self.context['request'].user
+    #     ).exists()
     def get_is_favorited(self, obj):
-        if not self.context['request'].user.is_authenticated:
-            return False
-        return obj.is_favorited.filter(
-            user=self.context['request'].user
-        ).exists()
+        return self.context[
+            'request'].user.is_authenticated and obj.is_favorited.filter(
+            user=self.context['request'].user).exists()
 
     def get_is_in_shopping_cart(self, obj):
         if not self.context['request'].user.is_authenticated:
