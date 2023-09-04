@@ -7,7 +7,6 @@ urlpatterns = [
     path('', include('api.tag.urls')),
     path('', include('api.subscribe.urls')),
     path('', include('api.shopcart.urls')),
-
     path('', include('api.ingredient.urls')),
     path('', include('api.favorite.urls')),
     path('', include('api.recipe.urls')),
