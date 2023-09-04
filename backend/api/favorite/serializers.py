@@ -13,7 +13,7 @@ class FavoriteSerializer(serializers.ModelSerializer):
         )
 
     def validate(self, data):
-        user = self.context['request'].user
+        user = data['request'].user
         if user.is_favorited.filter(recipe=data['recipe']).exists():
             raise serializers.ValidationError(
                 'Рецепт в избранном.'
