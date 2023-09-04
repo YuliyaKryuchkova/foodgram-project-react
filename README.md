@@ -172,7 +172,7 @@ TELEGRAM_TOKEN                 # токен бота (получить токе�
 
 * Сайт:
 
-https://foodgramtasty.myftp.org
+http://foodgramtasty.myftp.org
 
 Username: `admin`
 
