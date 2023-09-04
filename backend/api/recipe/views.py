@@ -27,17 +27,27 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return RecipeRetriveListSerializer
         return RecipeCreateUpdateSerializer
 
-    def message_shopping_cart(self, ingredients):
+    # def message_shopping_cart(self, ingredients):
+    #     shopping_list = 'Список продуктов:'
+    #     for ingredient in ingredients:
+    #         shopping_list += (
+    #             f"\n{ingredient['ingredient__name']} "
+    #             f"({ingredient['ingredient__measurement_unit']}) - "
+    #             f"{ingredient['amount']}")
+    #     file = 'shopping_list.txt'
+    #     response = HttpResponse(shopping_list, content_type='text/plain')
+    #     response['Content-Disposition'] = f'attachment; filename="{file}.txt"
+    #     return response
+
+    def message_shopping_cart(ingredients):
         shopping_list = 'Список продуктов:'
         for ingredient in ingredients:
             shopping_list += (
                 f"\n{ingredient['ingredient__name']} "
                 f"({ingredient['ingredient__measurement_unit']}) - "
-                f"{ingredient['amount']}")
-        file = 'shopping_list.txt'
-        response = HttpResponse(shopping_list, content_type='text/plain')
-        response['Content-Disposition'] = f'attachment; filename="{file}.txt"'
-        return response
+                f"{ingredient['amount']}"
+            )
+        return shopping_list
 
     @action(detail=False, methods=['GET'])
     def download_shopping_cart(self, request):
