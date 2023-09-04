@@ -15,7 +15,6 @@ User = get_user_model()
 @api_view()
 @permission_classes([IsAuthenticated])
 def subscriptions(request):
-    print('мы тут')
     paginator = LimitPageNumberPagination()
     users = User.objects.filter(followers__user=request.user)
     serializer = SubscribeListSerializer(
