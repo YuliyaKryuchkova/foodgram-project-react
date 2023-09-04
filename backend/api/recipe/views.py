@@ -27,23 +27,49 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return RecipeRetriveListSerializer
         return RecipeCreateUpdateSerializer
 
+    # def message_shopping_cart(self, ingredients):
+    #     shopping_list = 'Список продуктов:'
+    #     for ingredient in ingredients:
+    #         shopping_list += (
+    #             f"\n{ingredient['ingredient__name']} "
+    #             f"({ingredient['ingredient__measurement_unit']}) - "
+    #             f"{ingredient['amount']}")
+    #     file = 'shopping_list.txt'
+    #     response = HttpResponse(shopping_list, content_type='text/plain')
+    #     response['Content-Disposition'] = f'attachment; filename="{file}.txt"
+    #     return response
+    #
+    # @action(detail=False, methods=['GET'])
+    # def download_shopping_cart(self, request):
+    #     ingredients = IngredientRecipe.objects.filter(
+    #         recipe__shoppingcart__user=request.user
+    #     ).order_by('ingredient__name').values(
+    #         'ingredient__name', 'ingredient__measurement_unit'
+    #     ).annotate(amount=Sum('amount'))
+    #     return self.message_shopping_cart(ingredients)
+
     def message_shopping_cart(self, ingredients):
         shopping_list = 'Список продуктов:'
         for ingredient in ingredients:
             shopping_list += (
                 f"\n{ingredient['ingredient__name']} "
                 f"({ingredient['ingredient__measurement_unit']}) - "
-                f"{ingredient['amount']}")
-        file = 'shopping_list.txt'
-        response = HttpResponse(shopping_list, content_type='text/plain')
-        response['Content-Disposition'] = f'attachment; filename="{file}.txt"'
-        return response
+                f"{ingredient['amount']}"
+            )
+        return shopping_list
 
     @action(detail=False, methods=['GET'])
     def download_shopping_cart(self, request):
         ingredients = IngredientRecipe.objects.filter(
             recipe__shoppingcart__user=request.user
         ).order_by('ingredient__name').values(
-            'ingredient__name', 'ingredient__measurement_unit'
+            'ingredient__name',
+            'ingredient__measurement_unit'
         ).annotate(amount=Sum('amount'))
-        return self.message_shopping_cart(ingredients)
+
+        shopping_list = self.message_shopping_cart(ingredients)
+        file = 'shopping_list.txt'
+
+        response = HttpResponse(shopping_list, content_type='text/plain')
+        response['Content-Disposition'] = f'attachment; filename="{file}"'
+        return response
