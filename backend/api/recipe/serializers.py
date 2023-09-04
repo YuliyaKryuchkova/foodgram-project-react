@@ -74,12 +74,6 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
             'cooking_time',
         )
 
-    # def get_is_favorited(self, obj):
-    #     if not self.context['request'].user.is_authenticated:
-    #         return False
-    #     return obj.is_favorited.filter(
-    #         user=self.context['request'].user
-    #     ).exists()
     def get_is_favorited(self, obj):
         return self.context[
             'request'].user.is_authenticated and obj.is_favorited.filter(
@@ -126,12 +120,6 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
         return model.objects.filter(
             recipe=obj, user=self.context['request'].user).exists()
 
-    # def create_ingredients(self, recipe, ingredients):
-    #     for ingredient in ingredients:
-    #         IngredientRecipe.objects.create(
-    #             recipe=recipe, ingredient=ingredient['ingredient'],
-    #             amount=ingredient['amount']
-    #         )
     def create_ingredients(self, recipe, ingredients):
         ingredient_objects = [
             IngredientRecipe(
