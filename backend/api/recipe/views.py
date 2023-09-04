@@ -1,5 +1,5 @@
 from django.db.models import Sum
-# from django.http import HttpResponse
+from django.http import HttpResponse
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.decorators import action
@@ -27,27 +27,17 @@ class RecipeViewSet(viewsets.ModelViewSet):
             return RecipeRetriveListSerializer
         return RecipeCreateUpdateSerializer
 
-    # def message_shopping_cart(self, ingredients):
-    #     shopping_list = 'Список продуктов:'
-    #     for ingredient in ingredients:
-    #         shopping_list += (
-    #             f"\n{ingredient['ingredient__name']} "
-    #             f"({ingredient['ingredient__measurement_unit']}) - "
-    #             f"{ingredient['amount']}")
-    #     file = 'shopping_list.txt'
-    #     response = HttpResponse(shopping_list, content_type='text/plain')
-    #     response['Content-Disposition'] = f'attachment; filename="{file}.txt"
-    #     return response
-
-    def message_shopping_cart(ingredients):
+    def message_shopping_cart(self, ingredients):
         shopping_list = 'Список продуктов:'
         for ingredient in ingredients:
             shopping_list += (
                 f"\n{ingredient['ingredient__name']} "
                 f"({ingredient['ingredient__measurement_unit']}) - "
-                f"{ingredient['amount']}"
-            )
-        return shopping_list
+                f"{ingredient['amount']}")
+        file = 'shopping_list.txt'
+        response = HttpResponse(shopping_list, content_type='text/plain')
+        response['Content-Disposition'] = f'attachment; filename="{file}.txt"'
+        return response
 
     @action(detail=False, methods=['GET'])
     def download_shopping_cart(self, request):
