@@ -1,5 +1,5 @@
 from django.db.models import Sum
-from django.http import HttpResponse, JsonResponse
+from django.http import JsonResponse
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework import viewsets
 from rest_framework.decorators import action
