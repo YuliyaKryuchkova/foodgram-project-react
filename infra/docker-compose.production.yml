@@ -13,6 +13,8 @@ services:
       - pg_data:/var/lib/postgresql/data
 
   backend:
+    depends_on:
+      - db
     image: yuliyakryuchkova/foodgram_backend:latest
     env_file: .env
     volumes:

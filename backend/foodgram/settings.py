@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = env('SECRET_KEY', 'j')
 
-DEBUG = env.bool('DEBUG', False)
+DEBUG = env.bool('DEBUG', True)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', '127.0.0.1, localhost')
 
@@ -80,6 +80,7 @@ DATABASES = {
         'PORT': env('DB_PORT', 5432)
     }
 }
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
