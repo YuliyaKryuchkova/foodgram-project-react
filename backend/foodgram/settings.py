@@ -3,20 +3,16 @@ from pathlib import Path
 
 from environs import Env
 
-
 env = Env()
 env.read_env()
 
-
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 SECRET_KEY = env('SECRET_KEY', 'j')
 
 DEBUG = env.bool('DEBUG', False)
 
 ALLOWED_HOSTS = env.list('ALLOWED_HOSTS', '127.0.0.1, localhost')
-
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -74,25 +70,16 @@ WSGI_APPLICATION = 'foodgram.wsgi.application'
 
 AUTH_USER_MODEL = 'users.User'
 
-
-if env('DB_ENGINE') == 'django.db.backends.sqlite3':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('POSTGRES_DB', 'django'),
+        'USER': env('POSTGRES_USER', 'django'),
+        'PASSWORD': env('POSTGRES_PASSWORD', ''),
+        'HOST': env('DB_HOST', ''),
+        'PORT': env('DB_PORT', 5432)
     }
-elif env('DB_ENGINE') == 'django.db.backends.postgresql':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': env('POSTGRES_DB', 'django'),
-            'USER': env('POSTGRES_USER', 'django'),
-            'PASSWORD': env('POSTGRES_PASSWORD', ''),
-            'HOST': env('DB_HOST', ''),
-            'PORT': env('DB_PORT', 5432)
-        }
-    }
+}
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -109,7 +96,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
@@ -120,13 +106,11 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 STATIC_URL = '/backend_static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'backend_static')
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
