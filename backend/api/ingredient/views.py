@@ -1,9 +1,9 @@
 from rest_framework import viewsets
 
+from api.permissions import IsAuthorOrReadOnly
 from ingredient.models import Ingredient
 from .filters import IngredientFilter
 from .serializers import IngredientSerializer
-from api.permissions import IsAuthorOrReadOnly
 
 
 class IngredientViewSet(viewsets.ReadOnlyModelViewSet):

@@ -92,11 +92,6 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
             many=True
         ).data
 
-    # def to_representation(self, instance):
-    #     representation = super().to_representation(instance)
-    #     representation['is_favorited'] = self.get_is_favorited(instance)
-    #     return representation
-
 
 class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
     ingredients = RecipeCreateIngredientSerializer(many=True)
@@ -116,13 +111,7 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
             'cooking_time'
         )
 
-    def _get_something(self, obj, model):
-        if not self.context['request'].user.is_authenticated:
-            return False
-        return model.objects.filter(
-            recipe=obj, user=self.context['request'].user).exists()
-
-    def create_ingredients(self, recipe, ingredients):
+    def _create_ingredients(self, recipe, ingredients):
         ingredient_objects = [
             IngredientRecipe(
                 recipe=recipe,
@@ -142,7 +131,7 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
             **validated_data
         )
         obj.tags.set(tags)
-        self.create_ingredients(obj, ingredients)
+        self._create_ingredients(obj, ingredients)
         return obj
 
     def update(self, instance, validated_data):
@@ -151,7 +140,7 @@ class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
         instance.tags.clear()
         instance.ingredient_recipes.all().delete()
         instance.tags.set(tags)
-        self.create_ingredients(instance, ingredients)
+        self._create_ingredients(instance, ingredients)
         return super().update(instance, validated_data)
 
     def to_representation(self, instance):

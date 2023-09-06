@@ -5,12 +5,12 @@ from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticatedOrReadOnly
 
+from api.pagination import LimitPageNumberPagination
 from api.permissions import IsAuthorOrReadOnly
+from recipes.models import IngredientRecipe, Recipe
 from .filters import RecipeFilter
-from .pagination import LimitPageNumberPagination
 from .serializers import (RecipeCreateUpdateSerializer,
                           RecipeRetriveListSerializer)
-from recipes.models import IngredientRecipe, Recipe
 
 
 class RecipeViewSet(viewsets.ModelViewSet):

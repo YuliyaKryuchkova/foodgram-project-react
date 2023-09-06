@@ -1,9 +1,9 @@
+from rest_framework import viewsets
 from tag.models import Tag
-from .mixins import ListRetrieveViewSet
 from .serializers import TagSerializer
 
 
-class TagViewSet(ListRetrieveViewSet):
+class TagViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
     permission_classes = []
