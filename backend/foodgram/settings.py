@@ -72,8 +72,8 @@ AUTH_USER_MODEL = 'users.User'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('POSTGRES_DB', 'django'),
+        'ENGINE': env('DB_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': env('POSTGRES_DB', 'db.sqlite3'),
         'USER': env('POSTGRES_USER', 'django'),
         'PASSWORD': env('POSTGRES_PASSWORD', ''),
         'HOST': env('DB_HOST', ''),
@@ -125,12 +125,16 @@ REST_FRAMEWORK = {
 }
 
 DJOSER = {
+    "PERMISSIONS": {
+        'user': ['djoser.permissions.CurrentUserOrAdminOrReadOnly'],
+    },
     'LOGIN_FIELD': 'email',
     'SERIALIZERS': {
         'user_create': 'api.users.serializers.CustomUserCreateSerializer',
         'user': 'api.users.serializers.CustomUserSerializer',
         'current_user': 'api.users.serializers.CustomUserSerializer',
     },
+
 }
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

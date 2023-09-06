@@ -68,6 +68,7 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
             'author',
             'ingredients',
             'is_favorited',
+            'is_in_shopping_cart',
             'name',
             'image',
             'text',
@@ -85,7 +86,7 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
         return obj.shoppingcart.filter(user=self.context['request'].user)
 
     def get_ingredients(self, obj):
-        return RecipeCreateIngredientSerializer(
+        return RecipeIngredientSerializer(
             obj.ingredient_recipes,
             many=True
         ).data

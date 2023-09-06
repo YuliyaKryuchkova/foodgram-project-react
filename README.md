@@ -6,48 +6,10 @@ _Социальная сеть кулинарный помощник, в кот�
 Стек технологий: Python 3.8, Django 2.2.19, Яндекс.Облако, PostgreSQL, Gunicorn, Nginx, Docker._
 ### Как запустить проект:
 
-* Клонируйте репозиторий и перейдите в него в командной строке:
+* Форкните репозиторий и перейдите в него в командной строке:
 
 ```
-git clone https://github.com/YuliyaKryuchkova/foodgram-project-react
-```
-
-```
-cd backend
-```
-
-* Cоздать и активировать виртуальное окружение:
-
-```
-python3 -m venv env
-```
-
-* Если у вас Linux/macOS
-
-    ```
-    source env/bin/activate
-    ```
-
-* Если у вас windows
-
-    ```
-    source env/scripts/activate
-    ```
-  
-```
-python3 -m pip install --upgrade pip
-```
-
-* Установить зависимости из файла requirements.txt:
-
-```
-pip install -r requirements.txt
-```
-
-Выполнить миграции:
-
-```
-python3 manage.py migrate
+https://github.com/YuliyaKryuchkova/foodgram-project-react
 ```
 
 ### Установка Docker

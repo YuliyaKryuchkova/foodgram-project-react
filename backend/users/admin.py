@@ -6,6 +6,29 @@ User = get_user_model()
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
+    fieldsets = (
+        (
+            'Данные пользователя',
+            {
+                'classes': ('wide',),
+                'fields': (
+                    'username',
+                    'first_name',
+                    'last_name',
+                    'email',
+                    'password')
+            }
+        ),
+        ('Права пользователя', {'fields': (
+            'is_active',
+            'is_staff',
+            'is_superuser',
+        )}),
+    )
+    add_fieldsets = (
+
+    )
+
     list_display = (
         'id',
         'username',
