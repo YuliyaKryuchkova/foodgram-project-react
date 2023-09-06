@@ -92,10 +92,10 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
             many=True
         ).data
 
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        representation['is_favorited'] = self.get_is_favorited(instance)
-        return representation
+    # def to_representation(self, instance):
+    #     representation = super().to_representation(instance)
+    #     representation['is_favorited'] = self.get_is_favorited(instance)
+    #     return representation
 
 
 class RecipeCreateUpdateSerializer(serializers.ModelSerializer):
