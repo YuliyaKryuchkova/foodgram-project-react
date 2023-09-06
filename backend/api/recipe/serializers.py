@@ -82,9 +82,9 @@ class RecipeRetriveListSerializer(serializers.ModelSerializer):
             user=self.context['request'].user).exists()
 
     def get_is_in_shopping_cart(self, obj):
-        if not self.context['request'].user.is_authenticated:
-            return False
-        return obj.shoppingcart.filter(user=self.context['request'].user)
+        return self.context[
+            'request'].user.is_authenticated and obj.shoppingcart.filter(
+            user=self.context['request'].user).exists()
 
     def get_ingredients(self, obj):
         return RecipeIngredientSerializer(
