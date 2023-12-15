@@ -132,10 +132,6 @@ TELEGRAM_TOKEN                 # токен бота (получить токе�
 
 ` git push`
 
-* Сайт:
-
-http://foodgramtasty.myftp.org
-
 
 ### Автор:
 
