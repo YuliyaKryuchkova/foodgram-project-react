@@ -136,11 +136,6 @@ TELEGRAM_TOKEN                 # токен бота (получить токе�
 
 http://foodgramtasty.myftp.org
 
-Username: `admin`
-
-Email: `admin@admin.com`
-
-Password: `admin`
 
 ### Автор:
 
